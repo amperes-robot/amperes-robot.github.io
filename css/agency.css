@@ -298,8 +298,8 @@ header .intro-text .intro-heading {
 
 @media(min-width:768px) {
     header .intro-text {
-        padding-top: 150px;
-        padding-bottom: 750px;
+      padding-top: 300px;
+      padding-bottom: 200px;
     }
 
     header .intro-text .intro-lead-in {
