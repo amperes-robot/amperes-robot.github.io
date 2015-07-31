@@ -262,8 +262,8 @@ fieldset[disabled] .btn-xl.active {
 }
 
 header {
-    text-align: center;
-    color: #fff;
+    text-align: left;
+    color: #000;
     background-attachment: scroll;
     background-image: url(../img/header-bg.jpg);
     background-position: center center;
@@ -276,7 +276,7 @@ header {
 
 header .intro-text {
     padding-top: 100px;
-    padding-bottom: 50px;
+    padding-bottom: 400px;
 }
 
 header .intro-text .intro-lead-in {
@@ -291,15 +291,15 @@ header .intro-text .intro-heading {
     margin-bottom: 25px;
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
     line-height: 50px;
 }
 
 @media(min-width:768px) {
     header .intro-text {
-        padding-top: 300px;
-        padding-bottom: 200px;
+        padding-top: 150px;
+        padding-bottom: 750px;
     }
 
     header .intro-text .intro-lead-in {
@@ -773,7 +773,7 @@ ul.social-buttons li a:active {
     min-height: 100%;
     border: 0;
     border-radius: 0;
-    text-align: center;
+    text-align: justify;
     background-clip: border-box;
     -webkit-box-shadow: none;
     box-shadow: none;
