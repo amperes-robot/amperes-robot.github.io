@@ -13,9 +13,13 @@
 
 <!-- Custom Fonts -->
 <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet"
-  type="text/css">
-<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700|Merriweather' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Merriweather' rel='stylesheet' type='text/css'>
+	type="text/css">
+<link
+	href='https://fonts.googleapis.com/css?family=Oswald:400,300,700|Merriweather'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Oswald:400,300,700|Merriweather'
+	rel='stylesheet' type='text/css'>
 
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -83,12 +87,11 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-justify">
-					<p class="large text-muted">
-						AMPERES is a fully autonomous robot which goes through
-						an obstacle course, picks up stuffed pets, and brings them to 
-						a safety zone. It is designed for the 2015 UBC Engineering 
-						Physics Robotics competition as a part of the ENPH 253 course.
-					</p>
+					<p class="large text-muted">AMPERES is a fully autonomous robot
+						which goes through an obstacle course, picks up stuffed pets, and
+						brings them to a safety zone. It is designed for the 2015 UBC
+						Engineering Physics Robotics competition as a part of the ENPH 253
+						course.</p>
 				</div>
 
 			</div>
@@ -237,7 +240,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
-          <p class="text-muted">AMPERES Robot: 2015 Engineering Physics Robot Competition</p>
+					<p class="text-muted">AMPERES Robot: 2015 Engineering Physics
+						Robot Competition</p>
 				</div>
 			</div>
 		</div>
@@ -279,9 +283,7 @@
 								collapsed water tube serves as convenient zipline for escape, or
 								you can race out the way you came.
 							</p>
-							<p>
-								Below is the playing surface and its features.
-							</p>
+							<p>Below is the playing surface and its features.</p>
 							<img class="img-responsive img-centered"
 								src="img/portfolio/playing-field.png" alt="">
 							<p>
@@ -297,10 +299,9 @@
 								controls” to communicate with the robot (other than beacon
 								location) is not allowed. There will be 6 pets in total in the
 								locations roughly marked in the diagram above. For complete
-								rules, see 
-								<a href="http://projectlab.engphys.ubc.ca/wp-content/uploads/enph253-2015-CompetitionRules-ver2docx.pdf">
-									here
-								</a>
+								rules, see <a
+									href="http://projectlab.engphys.ubc.ca/wp-content/uploads/enph253-2015-CompetitionRules-ver2docx.pdf">
+									here </a>
 							</p>
 
 							<button type="button" class="btn btn-primary"
@@ -328,28 +329,76 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
 							<!-- Project Details Go Here -->
-							<h2>Project Name</h2>
-							<p class="item-intro text-muted">Lorem ipsum dolor sit amet
-								consectetur.</p>
-							<img class="img-responsive img-centered"
-								src="img/portfolio/roundicons-free.png" alt="">
-							<p>Use this area to describe your project. Lorem ipsum dolor
-								sit amet, consectetur adipisicing elit. Est blanditiis dolorem
-								culpa incidunt minus dignissimos deserunt repellat aperiam quasi
-								sunt officia expedita beatae cupiditate, maiores repudiandae,
-								nostrum, reiciendis facere nemo!</p>
-							<p>
-								<strong>Want these icons in this portfolio item sample?</strong>You
-								can download 60 of them for free, courtesy of <a
-									href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>,
-								or you can purchase the 1500 icon set <a
-									href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.
+							<h2>Mechanical Design</h2>
+
+							<p>Mechanical design was broken into three main
+								sub-assemblies: the chassis, the side arm and the front arm.
+								Each sub-assembly could be constructed separately and basic
+								functionality could be tested.</p>
+
+							<h3>Chassis</h3>
+
+							<p>The chassis consisted of the main body of the robot, PCB
+								storage space, the drive system, the front sled and front
+								brackets for static pet pickup.</p>
+
+							<p>The main body of the robot was constructed from aluminium
+								sheet metal, bent into shape and reinforced with brackets and
+								pop rivets. This provided a base for other parts and
+								sub-assemblies to be bolted or pop riveted to and storage space
+								for retrieved pets.</p>
+
+							<p>The back section of the chassis was used for PCB storage.
+								A top section was bolted on to provide stability and space for
+								mounting the TINAH. Shelves were slid into slots at the back of
+								the chassis and supported by tabs. These shelves housed the
+								PCBs.</p>
+
+							<p>Two versions of the drive system were designed. The first
+								used holes in the chassis and a supporting bracket for the motor
+								and axel. A wheel encoder was integrated into the power
+								transmission system via gear between the motor and axel. After
+								construction, it was realized that a three gear power
+								transmission system was difficult to properly align, and further
+								proper alignment of holes in the chassis and supporting bracket
+								was nearly impossible to achieve. A second version of the drive
+								system was designed in which the drive system was a self
+								supporting sub-assembly. The encoder and its gear were removed
+								from the power transmission chain and sepparately meshed with
+								the motor gear. Although we were reasonably confident this
+								second design would be more reliable and easier to fabricate,
+								due to the time constraints of the course and risks of unforseen
+								challenges when converting to the new drive system, the second
+								design was never fabricated. The drive system was designed with
+								a 3:1 gear ratio to ensure sufficient torque for climbing the
+								ramp. The use of small wheels alowed for a much smaller gear
+								ratio than was required by competing teams.</p>
+
+							<p>The front sled was fabricated from steel sheet metal so
+								that it could be bent and spot welded. It included holes and
+								mounts for tape following QRDs. A sled was chosen to simplify
+								design and eliminate potential issues with castor or wheel
+								mounting. The sled pivoted on a simple axel to alow its bottom
+								to remain flush with the playing surface while the robot climed
+								the ramp. This kept the QRDs a consistant distance from the
+								playing surface to reduce the occurance of unexpected sensor
+								readings due to changes in distance from the surface.</p>
+
+							<p>Brackets were mounted to the front of the chassis to alow
+								static pickup of the first and fourth pets. These brackets
+								consisted of an acrylic mounting bracket and a steel pickup bracket
+								reinforced with rare earth magnets.</p>
+
+							<h3>Side Arm</h3>
+							
+							<p> A bunch of stuff describing the side arm...
 							</p>
-							<ul class="list-inline">
-								<li>Date: July 2014</li>
-								<li>Client: Round Icons</li>
-								<li>Category: Graphic Design</li>
-							</ul>
+							
+							<h3>Front Arm</h3>
+							
+							<p> A bunch of stuff describing the front arm...
+							</p>
+							
 							<button type="button" class="btn btn-primary"
 								data-dismiss="modal">
 								<i class="fa fa-times"></i> Close
