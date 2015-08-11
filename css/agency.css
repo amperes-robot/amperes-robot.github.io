@@ -658,7 +658,7 @@ section h3.section-subheading {
 
 .team-member h4 {
     margin-top: 25px;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     text-transform: none;
 }
 
@@ -799,7 +799,7 @@ ul.social-buttons li a:active {
 }
 
 .portfolio-modal .modal-content h2 {
-    margin-bottom: 15px;
+    margin-bottom: 50px;
     font-size: 3em;
 }
 
