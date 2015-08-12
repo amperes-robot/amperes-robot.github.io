@@ -907,7 +907,7 @@ img {
     text-align: center;
 }
 
-object{
-	height: auto;
-    max-width: 100%;
+iframe{
+	width: auto;
+	max-height: 100%;
 }
