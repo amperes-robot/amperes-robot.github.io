@@ -888,6 +888,8 @@ figure{
     margin-bottom: 20px;
     margin-left: 40px;
     margin-right: 40px;
+    height: auto;
+    max-width: 100%;
 }
 
 figcaption {
@@ -903,4 +905,9 @@ img {
 
 .centering {
     text-align: center;
+}
+
+iframe{
+	width: auto;
+	max-height: 100%;
 }
