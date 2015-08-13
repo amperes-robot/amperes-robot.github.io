@@ -522,6 +522,12 @@
               <p>Two motors are used for driving, each powering one wheel using differential steering. The two arms used to lift up pets are also each powered by a motor. Every motor is connected to a motor output on TINAH via an external H-bridge with a comparator attached. Similarly, another H-bridge is used for actuating the arm for picking up pets. The H-Bridge design we used were designed by an ENPH 253 teaching assistant, Scott Lawson, and is shown below.</p>
               <img class="img-responsive img-centered"
                 src="img/portfolio/Circuit-HBridge.png" alt="">
+              <div class="centering">
+                <button type="button" class="btn btn-primary"
+                  data-dismiss="modal">
+                  <i class="fa fa-times"></i> Close
+                </button>
+              </div>
 						</div>
 					</div>
 				</div>
@@ -547,38 +553,7 @@
               <p>The software operates statefully. A main control loop handles the primary strategy and execution, while a 10kHz timer interrupt runs in parallel and handles the time-sensitive operation of polling input pins. The main control loop calls upon a variety of different modes (as shown below) that describe the current operation at any given point in the program’s execution.</p>
               <img class="img-responsive img-centered"
                 src="img/portfolio/sw-states.png" alt="">
-                <p>The encoders, tape-seeking QRD, and side QRD make up the position correction mechanism. Using tape following and dead reakoning, we can accurately navigate the course.</p>
-                <h3>Tape Following</h3>
-                <p>Tape following is the procedure of using a positional feedback model to adjust velocity based on a physical track. The analog tape-seeking QRD is read into the following formula which calculates an output value δθ based on the QRD reading Q:</p>
-                <p>where the gains GP , GI , GD are to be empirically determined, and QT is the desired value of Q (in this case, the half-way point between the black and white readings). The robot will then attempt to follow the boundary between the tape and the non-taped area.</p>
-                <h3>Dead Reakoning</h3>
-                <p>Dead reckoning is the process of calculating position based on an initial condition and velocity data over the course of travel. From encoder data, we can derive estimates for the change in position and angle with numerical integration. The number of encoder ticks corresponds proportionally to the instantaneous left and right wheel velocities vl and vd. With a distance of l between the two wheels, the instantaneous change in bearing dθ is</p>
-                <div lang="latex" align="center">
-                  \frac{d\theta}{dt} = \omega = \frac{v_r - v_l}{l}
-                </div>
-                <p>and the magnitude of the velocity of point located in centre c of the wheels is simply</p>
-                <div lang="latex" align="center">
-                  \left|v_c\right| = \frac{v_r + v_l}{l}
-                </div>
-                <p>giving us formulae</p>
-                <div lang="latex" align="center">
-                  \frac{dx}{dt} = \left|v_c\right| \cos{\theta}
-                </div>
-                <div lang="latex" align="center">
-                  \frac{dy}{dt} = \left|v_c\right| \sin{\theta}
-                </div>
-                <p>which we can approximate and discretize into</p>
-                <div lang="latex" align="center">
-                  \delta x = \delta t \left|v_c\right| \cos{\theta}
-                </div>
-                <div lang="latex" align="center">
-                  \delta y = \delta t \left|v_c\right| \sin{\theta}
-                </div>
-                <p>with vr and vl determined by</p>
-                <div lang="latex" align="center">
-                  v_{wheel} = sgn(\omega_{wheel}) \frac{\delta E_{wheel}}{\delta t} r_{wheel}
-                </div>
-                <p>where E is the integer number of encoder ticks on a wheel.</p>
+                <p>The encoders, tape-seeking QRD, and side QRD make up the position correction mechanism. Using tape following and dead reakoning, which is the process of calculating position based on an initial condition and velocity data over the course of travel, we can accurately navigate the course.</p>
 						</div>
 					</div>
 				</div>
