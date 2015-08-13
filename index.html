@@ -580,6 +580,109 @@
 						<div class="modal-body">
 							<h2>Software</h2>
 							<p><i>The code used to run AMPERES can be found <a href="https://github.com/amperes-robot/peta/sw" target="_blank">here</a>.</i></p>
+							<p>
+								As discussed in the design report, the software was planned to run on a simple state machine as shown below.
+							</p>
+							<img class="img-responsive img-centered" src="img/portfolio/sw-states.png" alt="" width=400>
+							<p>
+								However, due to difficulties in maintaining the state machine, a rudimentary asynchrony framework was developed in order to simplify its programming.
+								Commands are loaded onto a virtual "tape", along with a predefined end condition.
+<pre>
+struct If
+{
+	inline If(Condition type, int16_t arg = 0);
+
+	uint8_t eval() const;
+	void init() const;
+
+	Condition type;
+	int16_t arg;
+};
+
+enum CMD_TYPE : uint8_t
+{
+	FORK = 0,
+	EXEC = 1,
+	BRANCH = 2,
+	END = 3
+};
+
+struct Command
+{
+	CMD_TYPE cmd_type;
+
+	union
+	{
+		uint8_t (*Action)(uint8_t begin, uint16_t meta);
+		int8_t addr;
+	} target;
+
+	If if_;
+	uint16_t metadata;
+};
+
+Command program[256];
+</pre>
+								Upon reaching the end condition, the instruction pointer advances to execute the next command.
+								The end condition is evaluated by the <tt>If</tt> struct.
+								Each command is called once every loop, and an additional flag <tt>begin</tt> is passed if the command is being called for the first time.
+								Additionally, because commands are designed to be non-blocking, multiple commands can be executed in parallel, each with their own end conditions.
+							</p>
+							<p>
+								The wheel encoders were connected to external interrupt-enabled pins.
+								This allowed the wheels to spin at a rate independent of the software polling frequency.
+<pre>
+void attach_pin(uint8_t pin, uint8_t mode)
+{
+	if (pin > 3 || mode > 3 || mode == 1) return;
+	cli();
+	EIMSK |= (1 << pin);
+	EICRA &= ~(1 << (pin * 2));
+	EICRA &= ~(1 << (pin * 2 + 1));
+	EICRA |= (mode & (1 << 1)) << (pin * 2);
+	EICRA |= (mode & (1 << 0)) << (pin * 2 + 1);
+	sei();
+}
+</pre>
+								Although there were noise problems with the encoders, they worked well enough for our purposes.
+							</p>
+							<p>
+								Analog input was reimplemented for speed improvements.
+								Instead of blocking until the analog-to-digital conversion finishes, the ADC polls continuously in the background and cycles through all eight inputs.
+								An interrupt triggering upon completion of a conversion starts the conversion on the next pin. This way, the cost of reading from analog inputs is greatly decreased.
+
+<pre>
+void start_adc()
+{
+	// set the analog reference (high two bits of ADMUX) and select the
+	// channel (low 4 bits), and ADLAR to 0
+	ADMUX = (1 << 6) | (analog_roundrobin & 0x07);
+	// start the conversion
+	ADCSRA |= 1 << ADSC;
+}
+
+void end_adc()
+{
+	uint8_t low, high;
+	low = ADCL;
+	high = ADCH;
+
+	analog_pins[analog_roundrobin++] = (high << 8) | low;
+	
+	if (analog_roundrobin >= 8)
+	{
+		analog_roundrobin = 0;
+	}
+
+	start_adc();
+}
+
+ISR(ADC_vect)
+{
+	end_adc();
+}
+</pre>
+							</p>
 						</div>
 					</div>
 				</div>
