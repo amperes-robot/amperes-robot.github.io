@@ -36,6 +36,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<!-- LaTex -->
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -43,7 +46,7 @@
    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
    
    ga('create', 'UA-62533924-2', 'auto');
-   ga('send', 'pageview');   
+   ga('send', 'pageview');
 </script>
 
 </head>
@@ -105,13 +108,12 @@
 						Engineering Physics Robotics competition as a part of the ENPH 253
 						course in which it placed 4th out of 16 teams.</p>
 				</div>
-
 			</div>
 			<div class="row text-center">
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<a href="#competitionModal" class="portfolio-link"
 						data-toggle="modal">
-						<div class="page-scroll btn btn-xl">Tell Me More</div>
+						<div class="page-scroll btn btn-xl">More...</div>
 					</a>
 				</div>
 			</div>
@@ -138,7 +140,7 @@
 						alt="">
 					</a>
 					<div class="portfolio-caption">
-						<h4>Mechanical Design</h4>
+						<h4>The Mechanics</h4>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 portfolio-item">
@@ -152,7 +154,7 @@
 						alt="">
 					</a>
 					<div class="portfolio-caption">
-						<h4>Electrical Design</h4>
+						<h4>The Electronics</h4>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 portfolio-item">
@@ -166,7 +168,7 @@
 						alt="">
 					</a>
 					<div class="portfolio-caption">
-						<h4>Software</h4>
+						<h4>The Intelligence</h4>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 portfolio-item">
@@ -176,19 +178,18 @@
 							<div class="portfolio-hover-content">
 								<i class="fa fa-plus fa-3x"></i>
 							</div>
-						</div> <img src="img/portfolio/performance-icon.png" class="img-responsive" alt="">
+						</div> <img src="img/portfolio/action-icon.png" class="img-responsive" alt="">
 					</a>
 					<div class="portfolio-caption">
-						<h4>Performance</h4>
+						<h4>AMPERES in Action</h4>
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 portfolio-item">
 					<a href="Team 9 AMPERES Design Proposal.pdf" target="_blank"> <img
-						src="img/designProp.JPG" class="img-responsive" alt=""
-						style="height: 267px;">
+						src="img/portfolio/proposal-icon.png" class="img-responsive" alt="">
 					</a>
 					<div class="portfolio-caption">
-						<h4>Initial Design Proposal</h4>
+						<h4>The Proposal</h4>
 					</div>
 				</div>
 			</div>
@@ -314,7 +315,7 @@
 								locations roughly marked in the diagram above. For complete
 								rules, see <a
 									href="http://projectlab.engphys.ubc.ca/wp-content/uploads/enph253-2015-CompetitionRules-ver2docx.pdf"
-									target="_blank"> here </a>
+									target="_blank"> here</a>.
 							</p>
 
 							<button type="button" class="btn btn-primary"
@@ -542,7 +543,42 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
 							<h2>Software</h2>
-							<p>The software used for the robot can be found <a href="https://github.com/amperes-robot/robot-software" target="_blank">here</a>.</p>
+							<p><i>The code used to run AMPERES can be found <a href="https://github.com/amperes-robot/robot-software" target="_blank">here</a>.</i></p>
+              <p>The software operates statefully. A main control loop handles the primary strategy and execution, while a 10kHz timer interrupt runs in parallel and handles the time-sensitive operation of polling input pins. The main control loop calls upon a variety of different modes (as shown below) that describe the current operation at any given point in the program’s execution.</p>
+              <img class="img-responsive img-centered"
+                src="img/portfolio/sw-states.png" alt="">
+                <p>The encoders, tape-seeking QRD, and side QRD make up the position correction mechanism. Using tape following and dead reakoning, we can accurately navigate the course.</p>
+                <h3>Tape Following</h3>
+                <p>Tape following is the procedure of using a positional feedback model to adjust velocity based on a physical track. The analog tape-seeking QRD is read into the following formula which calculates an output value δθ based on the QRD reading Q:</p>
+                <p>where the gains GP , GI , GD are to be empirically determined, and QT is the desired value of Q (in this case, the half-way point between the black and white readings). The robot will then attempt to follow the boundary between the tape and the non-taped area.</p>
+                <h3>Dead Reakoning</h3>
+                <p>Dead reckoning is the process of calculating position based on an initial condition and velocity data over the course of travel. From encoder data, we can derive estimates for the change in position and angle with numerical integration. The number of encoder ticks corresponds proportionally to the instantaneous left and right wheel velocities vl and vd. With a distance of l between the two wheels, the instantaneous change in bearing dθ is</p>
+                <div lang="latex" align="center">
+                  \frac{d\theta}{dt} = \omega = \frac{v_r - v_l}{l}
+                </div>
+                <p>and the magnitude of the velocity of point located in centre c of the wheels is simply</p>
+                <div lang="latex" align="center">
+                  \left|v_c\right| = \frac{v_r + v_l}{l}
+                </div>
+                <p>giving us formulae</p>
+                <div lang="latex" align="center">
+                  \frac{dx}{dt} = \left|v_c\right| \cos{\theta}
+                </div>
+                <div lang="latex" align="center">
+                  \frac{dy}{dt} = \left|v_c\right| \sin{\theta}
+                </div>
+                <p>which we can approximate and discretize into</p>
+                <div lang="latex" align="center">
+                  \delta x = \delta t \left|v_c\right| \cos{\theta}
+                </div>
+                <div lang="latex" align="center">
+                  \delta y = \delta t \left|v_c\right| \sin{\theta}
+                </div>
+                <p>with vr and vl determined by</p>
+                <div lang="latex" align="center">
+                  v_{wheel} = sgn(\omega_{wheel}) \frac{\delta E_{wheel}}{\delta t} r_{wheel}
+                </div>
+                <p>where E is the integer number of encoder ticks on a wheel.</p>
 						</div>
 					</div>
 				</div>
@@ -550,7 +586,7 @@
 		</div>
 	</div>
 
-	<!-- FINAL PRODUCT -->
+	<!-- AMPERES IN ACTION -->
 	<div class="portfolio-modal modal fade" id="portfolioModal4"
 		tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-content">
@@ -564,7 +600,7 @@
 					<div class="col-lg-8 col-lg-offset-2">
 						<div class="modal-body">
 							<!-- Project Details Go Here -->
-							<h2>Final Product</h2>
+							<h2>AMPERES in Action</h2>
               <p>By the end of the six weeks we had to prepare for the 2015 UBC Engineering Physics Robotics competition, AMPERES was consistantly able to pick up all six pets on the obstacle course. Here's a (blurry) video from the competition day.</p>
               <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/OBbwCWxVhLQ" frameborder="0" allowfullscreen class="video"></iframe>
