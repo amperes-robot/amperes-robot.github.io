@@ -580,6 +580,7 @@
 						<div class="modal-body">
 							<h2>Software</h2>
 							<p><i>The code used to run AMPERES can be found <a href="https://github.com/amperes-robot/peta/sw" target="_blank">here</a>.</i></p>
+							<h3>Control</h3>
 							<p>
 								As discussed in the design report, the software was planned to run on a simple state machine as shown below.
 							</p>
@@ -628,6 +629,7 @@ Command program[256];
 								Each command is called once every loop, and an additional flag <tt>begin</tt> is passed if the command is being called for the first time.
 								Additionally, because commands are designed to be non-blocking, multiple commands can be executed in parallel, each with their own end conditions.
 							</p>
+							<h3>Encoders</h3>
 							<p>
 								The wheel encoders were connected to external interrupt-enabled pins.
 								This allowed the wheels to spin at a rate independent of the software polling frequency.
@@ -646,11 +648,11 @@ void attach_pin(uint8_t pin, uint8_t mode)
 </pre>
 								Although there were noise problems with the encoders, they worked well enough for our purposes.
 							</p>
+							<h3>Analog-to-Digital Conversion</h3>
 							<p>
 								Analog input was reimplemented for speed improvements.
 								Instead of blocking until the analog-to-digital conversion finishes, the ADC polls continuously in the background and cycles through all eight inputs.
 								An interrupt triggering upon completion of a conversion starts the conversion on the next pin. This way, the cost of reading from analog inputs is greatly decreased.
-
 <pre>
 void start_adc()
 {
